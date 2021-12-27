@@ -1,9 +1,11 @@
 package Game_21;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
-public class CardsDeck extends Card{
+public class CardsDeck {
+	Random random = new Random();
 	private static ArrayList<Card> deckArr = new ArrayList<Card>();
 	private String[] suits = {"Ercena", "Kârava", "Pîía", "Kreièa"};
 	private String[] cardType = {"Dûzis", "Kungs", "Dâma", "Kalps", "10", "9", "8", "7", "6", "5", "4", "3", "2"};
@@ -22,11 +24,13 @@ public class CardsDeck extends Card{
 					value[1] = 1;
 					card.setValue(value);
 				} else {
-					value = new int[1];
+					value = new int[2];
 					if (1 == j || 2 == j || 3 == j) {
 						value[0] = 10;
+						value[1] = 10;
 					} else {
 						value[0] = Integer.parseInt(cardType[j]);
+						value[1] = Integer.parseInt(cardType[j]);
 					}
 					card.setValue(value);
 				}
@@ -35,9 +39,10 @@ public class CardsDeck extends Card{
 		}
 	}
 	
-	public Card getCardFromDeck(int arrIndex) {
-		Card card = deckArr.get(arrIndex);
-		deckArr.remove(arrIndex);
+	public Card getCardFromDeck() {
+		int randomCardGet = random.nextInt(deckArr.size());
+		Card card = deckArr.get(randomCardGet);
+		deckArr.remove(randomCardGet);
 		return card;
 		
 	}
