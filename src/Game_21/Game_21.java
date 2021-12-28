@@ -54,20 +54,31 @@ public class Game_21 {
 		user.showCards();
 		boolean playGame = true;
 		while (playGame) {
-			if (user.askQuestion() == 1) {
+			int question = user.askQuestion();
+			if (question == 1) {
 				dealer.showCards();
 				user.addCardToHands(cardsDeck.getCardFromDeck());
 				user.showCards();
-			} else {
+				if (user.userSum() > 21) {
+					System.out.println("Jûs zaudçjât!");
+					playGame = false;
+					question = 3;
+				}
+			} 
+			while (question == 2) {
 				dealer.showAllCards();
 				user.showCards();
 				if (dealer.testIfHave_Above15()) {
 					dealer.addCardToHands(cardsDeck.getCardFromDeck());
+					System.out.println("Dalîtâjs paòem velvienu kârti");
+					System.out.println("-------------------------------");
 				} else {
 					winnerIs();
 					playGame = false;
+					question = 3;
 				}
 			}
+			
 		}
 	}
 	
@@ -82,7 +93,7 @@ public class Game_21 {
 		} else if (userSum > dealerSum){
 			System.out.println("Uzvarçja spçlçtâjs");
 		} else {
-			System.out.println("Uzvarçja dîleris");
+			System.out.println("Uzvarçja dalîtais");
 		}
 	}
 	

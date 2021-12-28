@@ -46,6 +46,7 @@ public class User {
 		}
 		System.out.println("Ðobrîd spçlçtâja kopsuma ir " + sum);
 		System.out.println();
+		
 	}
 	
 	public int userSum() {
