@@ -27,19 +27,6 @@ public class Game_21 {
 		cardsDeck.makeCardDeck();
 	}
 	
-	public void lookOfUserInterface() {
-		System.out.println();
-		System.out.println("Dalîtâja kârtis: "
-				+ "\n* kârava_10 ar vçrtîbu '10'"
-				+ "\n* noslçpta");
-		System.out.println();
-		System.out.println("Jûsu kârtis: "
-				+ "\n* Ercena_6 ar vçrtîbu '6'"
-				+ "\n* Ercena_10 ar vçrtîbu '10'");
-		System.out.println("\n1) Pieprasît kârti"
-				+ "\n2) Palikt uz vietas");
-		System.out.println("Jûsu izvçle: ");
-	}
 	
 	public void dealCards() {
 		for (int i = 0; i < 2; i++) {
@@ -60,7 +47,7 @@ public class Game_21 {
 				user.addCardToHands(cardsDeck.getCardFromDeck());
 				user.showCards();
 				if (user.userSum() > 21) {
-					System.out.println("Jûs zaudçjât!");
+					System.out.println("Uzvarçja dalîtais");
 					playGame = false;
 					question = 3;
 				}
@@ -91,6 +78,8 @@ public class Game_21 {
 		if (userSum == dealerSum) {
 			System.out.println("Uzvarçja abi un atdot atpakaï viòu naudu");
 		} else if (userSum > dealerSum){
+			System.out.println("Uzvarçja spçlçtâjs");
+		} else if (dealerSum > 21) {
 			System.out.println("Uzvarçja spçlçtâjs");
 		} else {
 			System.out.println("Uzvarçja dalîtais");

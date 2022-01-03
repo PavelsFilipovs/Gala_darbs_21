@@ -3,7 +3,7 @@ package Game_21;
 import java.util.ArrayList;
 
 public class Dealer {
-private ArrayList<Card> arrUserCards = new ArrayList<Card>();
+	private ArrayList<Card> arrUserCards = new ArrayList<Card>();
 	
 	public void addCardToHands(Card card) {
 		arrUserCards.add(card);

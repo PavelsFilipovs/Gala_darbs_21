@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class User {
 	Scanner scanner = new Scanner(System.in);
 	private ArrayList<Card> arrUserCards = new ArrayList<Card>();
+	private String name;
 	
 	public void addCardToHands(Card card) {
 		arrUserCards.add(card);
@@ -63,6 +64,14 @@ public class User {
 			}
 		}
 		return sum;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	
