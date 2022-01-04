@@ -3,11 +3,12 @@ package Game_21;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class User {
+public class User implements Player {
 	Scanner scanner = new Scanner(System.in);
 	private ArrayList<Card> arrUserCards = new ArrayList<Card>();
 	private String name;
 	
+	@Override
 	public void addCardToHands(Card card) {
 		arrUserCards.add(card);
 	}
@@ -23,6 +24,7 @@ public class User {
 		return answer;
 	}
 	
+	@Override
 	public void showCards() {
 		int sum = 0;
 		System.out.println("Jûsu kârtis: ");
@@ -35,7 +37,6 @@ public class User {
 			} else {
 				System.out.println("* " + cardName + " ar vçrtîbu " + value[0]);
 			}
-			
 			sum = value[0] + sum;
 		}
 		if (sum > 21) {
@@ -47,10 +48,10 @@ public class User {
 		}
 		System.out.println("Ðobrîd spçlçtâja kopsuma ir " + sum);
 		System.out.println();
-		
 	}
 	
-	public int userSum() {
+	@Override
+	public int Sum() {
 		int sum = 0;
 		for (int i = 0; i < arrUserCards.size(); i++) {
 			int[] value = arrUserCards.get(i).getValue();

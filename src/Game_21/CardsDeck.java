@@ -7,17 +7,15 @@ import java.util.Random;
 public class CardsDeck {
 	Random random = new Random();
 	private static ArrayList<Card> deckArr = new ArrayList<Card>();
-	private String[] suits = {"Ercena", "Kârava", "Pîía", "Kreièa"};
 	private String[] cardType = {"Dûzis", "Kungs", "Dâma", "Kalps", "10", "9", "8", "7", "6", "5", "4", "3", "2"};
 	
 	
-	
 	public void makeCardDeck() {
-		for (int i = 0; i < suits.length; i++) {
+		for (CardSuit suit : CardSuit.values()) {
 			for (int j = 0; j < cardType.length; j++) {
 				Card card = new Card();
 				int[] value;
-				card.setCardType(suits[i] + "_" + cardType[j]);
+				card.setCardType(suit + "_" + cardType[j]);
 				if (j == 0) {
 					value = new int[2];
 					value[0] = 11;

@@ -2,9 +2,10 @@ package Game_21;
 
 import java.util.ArrayList;
 
-public class Dealer {
+public class Dealer implements Player {
 	private ArrayList<Card> arrUserCards = new ArrayList<Card>();
 	
+	@Override
 	public void addCardToHands(Card card) {
 		arrUserCards.add(card);
 	}
@@ -30,6 +31,7 @@ public class Dealer {
 		return above15;
 	}
 	
+	@Override
 	public void showCards() {
 		int sum;
 		String cardName = arrUserCards.get(0).getCardType();
@@ -74,7 +76,8 @@ public class Dealer {
 		System.out.println();
 	}
 	
-	public int dealerSum() {
+	@Override
+	public int Sum() {
 		int sum = 0;
 		for (int i = 0; i < arrUserCards.size(); i++) {
 			int[] value = arrUserCards.get(i).getValue();

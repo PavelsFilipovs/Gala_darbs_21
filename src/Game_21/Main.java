@@ -63,12 +63,7 @@ public class Main {
 			}
 		} while (toPlay);
 		
-		
-		
-		
 		scanner.close();
-		
-		
 	}
 	
 	public static void game_21() {
@@ -84,9 +79,6 @@ public class Main {
 		userName = scanner.nextLine();
 		balance = serverManipulation.getUserInformation(userName);
 		System.out.printf("Prieks ar Jums, %s iepazîties. Jûsu kontâ ir %d euro\n", userName, balance);
-		
-		
-		
 	}
 	
 	public static void backDoor() {
@@ -99,14 +91,11 @@ public class Main {
 				serverManipulation.deleteFromServerUserInformation(deleteUser);
 				System.out.printf("Izdçsts lietotâjs '%s'\n", deleteUser);
 				break;
-			case "2":
-				
-				break;
-			case "3":
-				
+			case "quit":
+				System.out.print("Visu labu, Jûs izgâjât no 'backDoor'!");
 				break;
 			default:
-								
+				System.out.println("Kïûdaini ievadîts. Uzpied '1' vai 'quit'");
 		}
 	}
 

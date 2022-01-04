@@ -16,7 +16,6 @@ public class ServerManipulation {
 		Connection conn = null;
 
 		try {
-
 			String url = "jdbc:mysql://localhost:3306/game_21";
 			String user1 = "root";
 			String pass = "1234";
@@ -55,7 +54,6 @@ public class ServerManipulation {
 		Connection conn = null;
 
 		try {
-
 			String url = "jdbc:mysql://localhost:3306/game_21";
 			String user1 = "root";
 			String pass = "1234";
@@ -79,13 +77,11 @@ public class ServerManipulation {
 			
 			preparedStmt.executeUpdate();
 			
-			
 			conn.close();
 
 		} catch (SQLException e) {
 			e.getMessage();
 		}
-		
 	}
 	
 	public void toppedDownBalance(String user, int upBalance) {
@@ -93,7 +89,6 @@ public class ServerManipulation {
 		Connection conn = null;
 
 		try {
-
 			String url = "jdbc:mysql://localhost:3306/game_21";
 			String user1 = "root";
 			String pass = "1234";
@@ -117,7 +112,6 @@ public class ServerManipulation {
 			
 			preparedStmt.executeUpdate();
 			
-			
 			conn.close();
 
 		} catch (SQLException e) {
@@ -130,7 +124,6 @@ public class ServerManipulation {
 		Connection conn = null;
 
 		try {
-
 			String url = "jdbc:mysql://localhost:3306/game_21";
 			String user1 = "root";
 			String pass = "1234";
@@ -144,9 +137,7 @@ public class ServerManipulation {
 			
 			preparedStmt.execute();
 			
-			
 			conn.close();
-
 		} catch (SQLException e) {
 			e.getMessage();
 		}

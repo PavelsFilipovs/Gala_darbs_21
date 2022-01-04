@@ -40,8 +40,6 @@ public class Game_21 {
 	}
 	
 	public void gameStructor() {
-		
-		
 		makeBet();
 		dealer.showCards();
 		user.showCards();
@@ -52,7 +50,7 @@ public class Game_21 {
 				dealer.showCards();
 				user.addCardToHands(cardsDeck.getCardFromDeck());
 				user.showCards();
-				if (user.userSum() > 21) {
+				if (user.Sum() > 21) {
 					winnerIs();
 					playGame = false;
 				}
@@ -70,9 +68,7 @@ public class Game_21 {
 					break;
 				}
 			}
-			
 		}
-	
 	}
 	
 	
@@ -84,8 +80,8 @@ public class Game_21 {
 	
 	public void winnerIs() {
 		int userSum, dealerSum;
-		userSum = user.userSum();
-		dealerSum = dealer.dealerSum();
+		userSum = user.Sum();
+		dealerSum = dealer.Sum();
 		
 		if (userSum == dealerSum) {
 			System.out.printf("Uzvarçja abi un atdot atpakaï naudu %d euro\n", bet);
