@@ -88,6 +88,44 @@ public class ServerManipulation {
 		
 	}
 	
+	public void toppedDownBalance(String user, int upBalance) {
+		int balance = 0, userID = 0;
+		Connection conn = null;
+
+		try {
+
+			String url = "jdbc:mysql://localhost:3306/game_21";
+			String user1 = "root";
+			String pass = "1234";
+			conn = DriverManager.getConnection(url, user1, pass);
+
+			Statement st = conn.createStatement();
+			String sql = "SELECT * FROM game_21.user;";
+			ResultSet result = st.executeQuery(sql);
+			while (result.next()) {
+				if (user.equals(result.getString(2))) {
+					userID = result.getInt(1);
+					balance = result.getInt(3);
+				} 
+			}
+			balance = balance - upBalance;
+			
+			String query = "update game_21.user set Balance = ? where User_name = ?;";
+			PreparedStatement preparedStmt = conn.prepareStatement(query);
+			preparedStmt.setInt   (1, balance);
+			preparedStmt.setString(2, user);
+			
+			preparedStmt.executeUpdate();
+			
+			
+			conn.close();
+
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		
+	}
+	
 	public void deleteFromServerUserInformation(String user) {
 		Connection conn = null;
 

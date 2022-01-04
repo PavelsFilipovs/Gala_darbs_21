@@ -6,6 +6,10 @@ public class Game_21 {
 	Dealer dealer = new Dealer();
 	User user = new User();
 	CardsDeck cardsDeck = new CardsDeck();
+	ServerManipulation serverManipulation = new ServerManipulation();
+	
+	private int bet;
+	private static String userName;
 	
 	public void ruls() {
 		System.out.println("Sâkoties spçlei, dalîtâjs izdala katram spçlçtâjam,"
@@ -37,6 +41,8 @@ public class Game_21 {
 	
 	public void gameStructor() {
 		
+		
+		makeBet();
 		dealer.showCards();
 		user.showCards();
 		boolean playGame = true;
@@ -47,9 +53,8 @@ public class Game_21 {
 				user.addCardToHands(cardsDeck.getCardFromDeck());
 				user.showCards();
 				if (user.userSum() > 21) {
-					System.out.println("Uzvarçja dalîtais");
+					winnerIs();
 					playGame = false;
-					question = 3;
 				}
 			} 
 			while (question == 2) {
@@ -62,28 +67,53 @@ public class Game_21 {
 				} else {
 					winnerIs();
 					playGame = false;
-					question = 3;
+					break;
 				}
 			}
 			
 		}
+	
+	}
+	
+	
+	public void getName() {
+		Main main = new Main();
+		userName = main.userName;
 	}
 	
 	public void winnerIs() {
 		int userSum, dealerSum;
-		
 		userSum = user.userSum();
 		dealerSum = dealer.dealerSum();
 		
 		if (userSum == dealerSum) {
-			System.out.println("Uzvarçja abi un atdot atpakaï viòu naudu");
+			System.out.printf("Uzvarçja abi un atdot atpakaï naudu %d euro", bet);
+			serverManipulation.toppedUpBalance(user.getName(), bet);
+		} else if (userSum == 21){
+			bet = bet * 3;
+			System.out.printf("Uzvarçja spçlçtâjs un viòa vinests ir %d euro", bet);
+			serverManipulation.toppedUpBalance(user.getName(), bet);
 		} else if (userSum > dealerSum){
-			System.out.println("Uzvarçja spçlçtâjs");
+			bet = bet * 2;
+			serverManipulation.toppedUpBalance(user.getName(), bet);
+			System.out.printf("Uzvarçja spçlçtâjs un viòa vinests ir %d euro", bet);
 		} else if (dealerSum > 21) {
-			System.out.println("Uzvarçja spçlçtâjs");
+			bet = bet * 2;
+			serverManipulation.toppedUpBalance(user.getName(), bet);
+			System.out.printf("Uzvarçja spçlçtâjs un viòa vinests ir %d euro", bet);
 		} else {
-			System.out.println("Uzvarçja dalîtais");
+			System.out.println("Uzvarçja dalîtais un spçlçtâjs zaudçja uzlikto likmi");
 		}
+	}
+	
+	public void makeBet() {
+		getName();
+		user.setName(userName);
+		String userName = user.getName();
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Cik lielu summu liksiet uz spçli...");
+		bet = scanner.nextInt();
+		serverManipulation.toppedDownBalance(userName, bet);
 	}
 	
 }

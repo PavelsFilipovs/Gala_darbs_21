@@ -79,11 +79,11 @@ public class Main {
 	
 	public static void backDoor() {
 		System.out.println("Ðeit vajaga padomât ko sarakstît!!! Izdzçst uzpied '1'");
-		String answer = scanner.nextLine();
+		String answer = scanner.next();
 		switch (answer) {
 			case "1":
 				System.out.print("Kuru izdzçst lietotâju: ");
-				String deleteUser = scanner.nextLine();
+				String deleteUser = scanner.next();
 				serverManipulation.deleteFromServerUserInformation(deleteUser);
 				System.out.printf("Izdçsts lietotâjs %s\n", deleteUser);
 				break;
