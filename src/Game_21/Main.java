@@ -21,6 +21,17 @@ public class Main {
 		intredusing();
 		
 		do {
+			balance = serverManipulation.getUserInformation(userName);
+			if (balance == 0) {
+				
+				System.out.print("Jûsu kontâ nav naudas. Uz cik lielu summu papildinât kontu: ");
+				int upBalance = scanner.nextInt();
+				serverManipulation.toppedUpBalance(userName, upBalance);
+				balance = balance + upBalance;
+				System.out.println("----------------");
+				System.out.printf("Konts papildinâts uz %d euro Jûsu kokntâ ðobrîd %d euro", upBalance, balance);
+				System.out.println();
+			}
 			System.out.println("1) Papildinât kontu\n"
 					+ "2) Uzsâkt spçli\n"
 					+ "'quit' lai izietu.");
@@ -75,17 +86,18 @@ public class Main {
 		System.out.printf("Prieks ar Jums, %s iepazîties. Jûsu kontâ ir %d euro\n", userName, balance);
 		
 		
+		
 	}
 	
 	public static void backDoor() {
-		System.out.println("Ðeit vajaga padomât ko sarakstît!!! Izdzçst uzpied '1'");
+		System.out.print("Izdzçst lietotâju uzpied '1' un ieraksti vârdu");
 		String answer = scanner.next();
 		switch (answer) {
 			case "1":
-				System.out.print("Kuru izdzçst lietotâju: ");
+				System.out.print("Kuru lietotâju izdzçst: ");
 				String deleteUser = scanner.next();
 				serverManipulation.deleteFromServerUserInformation(deleteUser);
-				System.out.printf("Izdçsts lietotâjs %s\n", deleteUser);
+				System.out.printf("Izdçsts lietotâjs '%s'\n", deleteUser);
 				break;
 			case "2":
 				

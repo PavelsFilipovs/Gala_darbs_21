@@ -8,7 +8,7 @@ public class Game_21 {
 	CardsDeck cardsDeck = new CardsDeck();
 	ServerManipulation serverManipulation = new ServerManipulation();
 	
-	private int bet;
+	private int bet, balance;
 	private static String userName;
 	
 	public void ruls() {
@@ -79,6 +79,7 @@ public class Game_21 {
 	public void getName() {
 		Main main = new Main();
 		userName = main.userName;
+		balance = main.balance;
 	}
 	
 	public void winnerIs() {
@@ -87,32 +88,43 @@ public class Game_21 {
 		dealerSum = dealer.dealerSum();
 		
 		if (userSum == dealerSum) {
-			System.out.printf("Uzvarçja abi un atdot atpakaï naudu %d euro", bet);
+			System.out.printf("Uzvarçja abi un atdot atpakaï naudu %d euro\n", bet);
 			serverManipulation.toppedUpBalance(user.getName(), bet);
 		} else if (userSum == 21){
 			bet = bet * 3;
-			System.out.printf("Uzvarçja spçlçtâjs un viòa vinests ir %d euro", bet);
+			System.out.printf("Uzvarçja spçlçtâjs un viòa vinests ir %d euro\n", bet);
 			serverManipulation.toppedUpBalance(user.getName(), bet);
-		} else if (userSum > dealerSum){
+		} else if (userSum > dealerSum && userSum <= 21){
 			bet = bet * 2;
 			serverManipulation.toppedUpBalance(user.getName(), bet);
-			System.out.printf("Uzvarçja spçlçtâjs un viòa vinests ir %d euro", bet);
+			System.out.printf("Uzvarçja spçlçtâjs un viòa vinests ir %d euro\n", bet);
 		} else if (dealerSum > 21) {
 			bet = bet * 2;
 			serverManipulation.toppedUpBalance(user.getName(), bet);
-			System.out.printf("Uzvarçja spçlçtâjs un viòa vinests ir %d euro", bet);
+			System.out.printf("Uzvarçja spçlçtâjs un viòa vinests ir %d euro\n", bet);
 		} else {
 			System.out.println("Uzvarçja dalîtais un spçlçtâjs zaudçja uzlikto likmi");
 		}
 	}
 	
-	public void makeBet() {
+	public void makeBet() { 
+		boolean notCorrectValue = true;
+		
 		getName();
 		user.setName(userName);
 		String userName = user.getName();
 		Scanner scanner = new Scanner(System.in);
+		System.out.printf("Jûs varat uzlikt maksimâli %d\n", balance);
 		System.out.print("Cik lielu summu liksiet uz spçli...");
-		bet = scanner.nextInt();
+		while (notCorrectValue) {
+			bet = scanner.nextInt();
+			if (bet > balance) {
+				System.out.println("Ievadiet pareizu summu");
+			} else {
+				notCorrectValue = false;
+			}
+		}
+		balance = balance - bet;
 		serverManipulation.toppedDownBalance(userName, bet);
 	}
 	
